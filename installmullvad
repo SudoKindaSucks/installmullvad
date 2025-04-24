@@ -1,0 +1,42 @@
+#!/bin/bash
+
+## creating temp directory
+mkdir ~/temp
+mv MullvadVPN*.deb ~/temp
+cd ~/temp
+## unpacking .deb file and the data tarball inside
+ar -x MullvadVPN*.deb
+tar -xf data.tar.xz
+## moving essential files
+mv opt/'Mullvad VPN' /opt
+mv usr/bin/mullvad-daemon /usr/bin
+## creating the init script
+touch /etc/init.d/mullvad-daemon
+echo "#!/sbin/openrc-run
+description="Mullvad VPN Service"
+
+depend() {
+    need net
+}
+
+supervisor="supervise-daemon"
+command="/usr/bin/mullvad-daemon"
+command_args="${MULLVPN_OPTS}"
+#pidfile="/run/${SVCNAME}.pid"
+command_background=true
+" >> /etc/init.d/mullvad-daemon
+## making .desktop file
+mv usr/share/icons/hicolor/1024x1024/apps/mullvad-vpn.png /opt/'Mullvad VPN'
+touch .local/share/applications/mullvadvpn.desktop
+echo "[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/opt/'Mullvad VPN'/mullvad-vpn
+Name=MullvadVPN
+Icon=/opt/'Mullvad VPN'/mullvad-vpn.png
+" >> .local/share/applications/mullvadvpn.desktop
+## starting the daemon and adding it to the run level
+rc-update add /etc/init.d/mullvad-daemon
+rc-service /etc/init.d/mullvad-daemon start
