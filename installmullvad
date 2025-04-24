@@ -25,6 +25,7 @@ command_args="${MULLVPN_OPTS}"
 #pidfile="/run/${SVCNAME}.pid"
 command_background=true
 " >> /etc/init.d/mullvad-daemon
+chmod +x /etc/init.d/mullvad-daemon
 ## making .desktop file
 mv usr/share/icons/hicolor/1024x1024/apps/mullvad-vpn.png /opt/'Mullvad VPN'
 touch .local/share/applications/mullvadvpn.desktop
@@ -40,3 +41,4 @@ Icon=/opt/'Mullvad VPN'/mullvad-vpn.png
 ## starting the daemon and adding it to the run level
 rc-update add /etc/init.d/mullvad-daemon
 rc-service /etc/init.d/mullvad-daemon start
+rm -r ~/temp
