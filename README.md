@@ -8,6 +8,7 @@ because this script relies on folders in the home directory such as .local.
 To run:
 
 sudo ./installmullvad
+
 or for doas:
 
 doas ./installmullvad
