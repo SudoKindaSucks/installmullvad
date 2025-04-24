@@ -9,3 +9,4 @@ To run:
 
 sudo ./installmullvad
 
+And as you should do with any script you download make sure to check it so you know what its doing especially if your running it with elevated priviliges.
