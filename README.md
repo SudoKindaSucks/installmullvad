@@ -8,5 +8,8 @@ because this script relies on folders in the home directory such as .local.
 To run:
 
 sudo ./installmullvad
+or for doas:
+
+doas ./installmullvad
 
 And as you should do with any script you download make sure to check it so you know what its doing especially if your running it with elevated priviliges.
