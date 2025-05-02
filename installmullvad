@@ -39,6 +39,6 @@ Name=MullvadVPN
 Icon=/opt/'Mullvad VPN'/mullvad-vpn.png
 " >> .local/share/applications/mullvadvpn.desktop
 ## starting the daemon and adding it to the run level
-rc-update add /etc/init.d/mullvad-daemon
+rc-update add /etc/init.d/mullvad-daemon default
 rc-service /etc/init.d/mullvad-daemon start
 rm -r ~/temp
